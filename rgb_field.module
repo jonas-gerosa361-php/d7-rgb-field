@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ *  The core of RGB Field Module.
+ */
+
+/**
+ * Implements hook_field_info().
+ */
+function rgb_field_info() {
+  return [
+    'rgb_color' => [
+      'label' => t('Color'),
+      'description' => t('This field stores and RGB color and label in the database.'),
+      'default_widget' => 'rgb_textfield',
+      'default_formatter' => 'rgb_raw',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function rgb_field_widget_info() {
+  return [
+    'rgb_textfield' => [
+      'label' => t('RGB Textfields'),
+      'field types' => ['rgb_color'],
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function rgb_field_formatter_info() {
+  return [
+    'rgb_raw' => [
+      'label' => t('Raw color value'),
+      'field types' => ['rgb_color',]
+    ],
+  ];
+}
