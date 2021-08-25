@@ -8,7 +8,7 @@
 /**
  * Implements hook_field_info().
  */
-function rgb_field_info() {
+function rgb_field_field_info() {
   return [
     'rgb_color' => [
       'label' => t('Color'),
@@ -22,7 +22,7 @@ function rgb_field_info() {
 /**
  * Implements hook_field_widget_info().
  */
-function rgb_field_widget_info() {
+function rgb_field_field_widget_info() {
   return [
     'rgb_textfield' => [
       'label' => t('RGB Textfields'),
@@ -35,7 +35,7 @@ function rgb_field_widget_info() {
 /**
  * Implements hook_field_formatter_info().
  */
-function rgb_field_formatter_info() {
+function rgb_field_field_formatter_info() {
   return [
     'rgb_raw' => [
       'label' => t('Raw color value'),
