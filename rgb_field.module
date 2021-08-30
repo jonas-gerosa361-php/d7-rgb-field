@@ -13,8 +13,8 @@ function rgb_field_field_info() {
     'rgb_color' => [
       'label' => t('Color'),
       'description' => t('This field stores and RGB color and label in the database.'),
-      'default_widget' => 'rgb_textfield',
-      'default_formatter' => 'rgb_raw',
+      'default_widget' => 'rgb_field_textfield',
+      'default_formatter' => 'rgb_field_raw',
     ],
   ];
 }
@@ -24,20 +24,43 @@ function rgb_field_field_info() {
  */
 function rgb_field_field_widget_info() {
   return [
-    'rgb_textfield' => [
+    'rgb_field_textfield' => [
       'label' => t('RGB Textfields'),
       'field types' => ['rgb_color'],
     ],
   ];
 }
 
+/**
+ * Implements hook_field_widget_form().
+ */
+function rgb_field_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+
+  $element['#type'] = 'fieldset';
+
+  $element['rgb'] = [
+    '#type' => 'textfield',
+    '#title' => t('RGB Code'),
+    '#field_prefix' => '#',
+    '#size' => 6,
+    '#default_value' => isset($items[$delta]['rgb']) ? $items[$delta]['rgb'] : '',
+  ];
+
+  $element['label'] = [
+    '#type' => 'textfield',
+    '#title' => t('Color'),
+    '#default_value' => isset($items[$delta]['label']) ? $items[$delta]['label'] : '',
+  ];
+
+  return $element;
+}
 
 /**
  * Implements hook_field_formatter_info().
  */
 function rgb_field_field_formatter_info() {
   return [
-    'rgb_raw' => [
+    'rgb_field_raw' => [
       'label' => t('Raw color value'),
       'field types' => ['rgb_color',]
     ],
